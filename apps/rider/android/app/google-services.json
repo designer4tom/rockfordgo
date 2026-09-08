@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "158033879674",
+    "project_id": "readyride-new",
+    "storage_bucket": "readyride-new.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:158033879674:android:d1a4cea89f6e8092e911c3",
+        "android_client_info": {
+          "package_name": "com.readyrider.apps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDidlX20lJy9T0EZgxZL03zeLUJMbHO7-Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

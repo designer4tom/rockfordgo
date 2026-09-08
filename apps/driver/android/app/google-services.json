@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "191263881807",
+    "project_id": "readyride-a9be6",
+    "storage_bucket": "readyride-a9be6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191263881807:android:c840e1123ff3562ae4083a",
+        "android_client_info": {
+          "package_name": "com.readydriver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc_i68RVkgDlspCD_y1ByzT95Zm0ibOWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:191263881807:android:ed1ee3943ddf1521e4083a",
+        "android_client_info": {
+          "package_name": "com.readyrider.apps"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCc_i68RVkgDlspCD_y1ByzT95Zm0ibOWQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

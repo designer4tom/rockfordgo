@@ -1,0 +1,13 @@
+{
+    "default": "en",
+    "locales": {
+        "en": {
+            "name": "English",
+            "rtl": false
+        },
+        "ar": {
+            "name": "العربية",
+            "rtl": true
+        }
+    }
+}

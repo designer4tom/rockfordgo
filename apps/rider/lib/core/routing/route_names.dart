@@ -1,0 +1,34 @@
+class RouteNames {
+  static const String splash = '/';
+  static const String onboarding = '/onboarding';
+  static const String phoneEntry = '/phone-entry';
+  static const String otpVerify = '/otp-verify';
+  static const String registerOtp = '/register-otp';
+  static const String loginOtp = '/login-otp';
+  static const String completeProfile = '/complete-profile';
+  static const String registrationSuccess = '/registration-success';
+  static const String home = '/home';
+  static const String ourServices = '/our-services';
+  static const String setDestination = '/set-destination';
+  static const String vehicleSelect = '/vehicle-select';
+  static const String bookingConfirm = '/booking-confirm';
+  static const String rideTracking = '/ride-tracking';
+  static const String parcelBooking = '/parcel-booking';
+  static const String parcelTracking = '/parcel-tracking';
+  static const String wallet = '/wallet';
+  static const String history = '/history';
+  static const String orderDetail = '/order-detail';
+  static const String notifications = '/notifications';
+  static const String profile = '/profile';
+  static const String favourites = '/favourites';
+  static const String referral = '/referral';
+  static const String settings = '/settings';
+  static const String withdrawal = '/withdrawal';
+  static const String offers = '/offers';
+  static const String transactions = '/transactions';
+  static const String dueHistory = '/due-history';
+  static const String helpCenter = '/help-center';
+  static const String safety = '/safety';
+  static const String performance = '/performance';
+  static const String chat = '/chat';
+}
