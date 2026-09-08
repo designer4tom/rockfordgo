@@ -5,30 +5,25 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Models\Admin;
 use Symfony\Component\HttpFoundation\Response;
 
 class AdminAuth
 {
-    /**
-     * TEMPORARY ROCKFORDGO DEVELOPMENT ACCESS
-     *
-     * Automatically logs in the first active administrator.
-     * REMOVE THIS BYPASS BEFORE PRODUCTION.
-     */
     public function handle(Request $request, Closure $next): Response
     {
         if (! Auth::guard('admin')->check()) {
+            return redirect()->route('admin.login');
+        }
 
-            $admin = Admin::where('is_active', true)->first();
+        $admin = Auth::guard('admin')->user();
 
-            if (! $admin) {
-                abort(503, 'No active admin account exists.');
-            }
+        if (! $admin->is_active) {
+            Auth::guard('admin')->logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
 
-            Auth::guard('admin')->login($admin);
-
-            $request->session()->regenerate();
+            return redirect()->route('admin.login')
+                ->withErrors(['email' => 'Your account has been deactivated.']);
         }
 
         return $next($request);
