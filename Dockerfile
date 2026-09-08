@@ -38,18 +38,17 @@ RUN mkdir -p \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-# Create Laravel's public storage link so uploaded images work.
-RUN php artisan storage:link || true
-
-# Create a temporary SQLite database so Laravel's
-# Composer package discovery can run during the Docker build.
-# Production will use MySQL through the Render environment variables.
+# Temporary SQLite database allows Laravel package discovery during build.
+# Production uses the Render MySQL database.
 RUN touch database/database.sqlite \
     && composer install \
     --no-dev \
     --no-interaction \
     --prefer-dist \
     --optimize-autoloader
+
+# Make Laravel uploaded files publicly accessible.
+RUN php artisan storage:link || true
 
 EXPOSE 80
 
