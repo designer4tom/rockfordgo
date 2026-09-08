@@ -33,9 +33,13 @@ RUN mkdir -p \
     storage/framework/sessions \
     storage/framework/views \
     storage/logs \
+    storage/app/public \
     bootstrap/cache \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
+
+# Create Laravel's public storage link so uploaded images work.
+RUN php artisan storage:link || true
 
 # Create a temporary SQLite database so Laravel's
 # Composer package discovery can run during the Docker build.
