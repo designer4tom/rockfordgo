@@ -14,6 +14,10 @@ return Application::configure(basePath: dirname(__DIR__))
         health: '/up',
     )
     ->withMiddleware(function (Middleware $middleware): void {
+
+        // Trust Render's reverse proxy so Laravel correctly recognizes HTTPS.
+        $middleware->trustProxies(at: '*');
+
         // Gate fresh deployments behind the web installer.
         $middleware->web(prepend: [
             \App\Http\Middleware\EnsureInstalled::class,
@@ -25,10 +29,16 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
 
         // Preference cookies are client-readable (JS theme toggle) — keep them unencrypted.
-        $middleware->encryptCookies(except: ['admin_locale', 'admin_theme']);
+        $middleware->encryptCookies(except: [
+            'admin_locale',
+            'admin_theme',
+        ]);
 
-        // Payment gateways POST back to /payment/* without a CSRF token (MultiPay + legacy).
-        $middleware->validateCsrfTokens(except: ['payment/*']);
+        // Payment gateways POST back to /payment/* without a CSRF token
+        // (MultiPay + legacy).
+        $middleware->validateCsrfTokens(except: [
+            'payment/*',
+        ]);
 
         // Admin panel + mobile API middleware aliases.
         $middleware->alias([
@@ -43,4 +53,5 @@ return Application::configure(basePath: dirname(__DIR__))
         $exceptions->shouldRenderJsonWhen(
             fn (Request $request) => $request->is('api/*'),
         );
-    })->create();
+    })
+    ->create();
