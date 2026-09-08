@@ -37,7 +37,11 @@ RUN mkdir -p \
     && chmod -R 775 storage bootstrap/cache \
     && chown -R www-data:www-data storage bootstrap/cache
 
-RUN composer install \
+# Create a temporary SQLite database so Laravel's
+# Composer package discovery can run during the Docker build.
+# Production will use MySQL through the Render environment variables.
+RUN touch database/database.sqlite \
+    && composer install \
     --no-dev \
     --no-interaction \
     --prefer-dist \
