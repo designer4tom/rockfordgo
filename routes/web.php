@@ -117,6 +117,20 @@ Route::prefix('admin')->name('admin.')->group(function () {
         return back()->withCookie(cookie('admin_theme', $theme, 60 * 24 * 365));
     })->name('set-theme');
 
+    // TEMPORARY PUBLIC ADMIN ACCESS
+    // Anyone who visits /admin/public-access will be logged in as the first active admin.
+    // REMOVE THIS ROUTE before production use.
+    Route::get('public-access', function (\Illuminate\Http\Request $request) {
+        $admin = \App\Models\Admin::where('is_active', true)->first();
+
+        abort_unless($admin, 404, 'No active admin account found.');
+
+        \Illuminate\Support\Facades\Auth::guard('admin')->login($admin, true);
+        $request->session()->regenerate();
+
+        return redirect()->route('admin.dashboard');
+    })->name('public-access');
+
     // Guest (login + 2FA challenge) routes.
     Route::middleware('guest:admin')->group(function () {
         Route::get('login', [AuthController::class, 'showLogin'])->name('login');
